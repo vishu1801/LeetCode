@@ -1,0 +1,31 @@
+class Solution {
+    public int[][] matrixReshape(int[][] mat, int r, int c) {
+        if(mat.length * mat[0].length != r*c)
+            return mat;
+        
+        if(mat.length == r && mat[0].length == c)
+            return mat;
+        else{
+            int[][] new_shape = new int[r][c];
+            int row=0,col=0,old_row = mat.length,old_col = mat[0].length;
+            
+            
+            for(int i = 0; i<r;i++){
+                for(int j = 0;j<c;j++){
+                    new_shape[i][j] = mat[row][col];
+                    
+                    if(col == old_col-1){
+                        row++;
+                    }
+                    
+                    col = (col + 1) % old_col;
+                    
+                }
+            }
+            
+            return new_shape;
+            
+        }
+        
+    }
+}
